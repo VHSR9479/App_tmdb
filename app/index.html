@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="myApp" class="no-js"> 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,25 +9,112 @@
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
-  <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <!-- BOOTSTRAP -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
-  </ul>
+ 
+  <div id="site-content">
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" id="branding">
+          <img src="./asset/img/tmdb.svg" alt="" class="logo">
+          <div class="logo-copy">
+            <h1 class="site-title">&nbsp;&nbsp;&nbsp;THEMOVIEDB&nbsp;&nbsp;&nbsp;</h1>
+            <!-- <small class="site-description">Tagline goes here</small> -->
+          </div>
+        </a> <!-- #branding -->
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+        <div class="main-navigation">
+          <ul class="menu">
+            <li class="menu-item current-menu-item"><a href="#!/view1">Informacion</a></li>
+            <li class="menu-item"><a href="#!/view2">Peliculas</a></li>
+          </ul><!--  .menu -->
+        </div> <!-- .main-navigation -->
 
-  <div ng-view></div>
+        <div class="mobile-navigation"></div>
+      </div>
+    </header>
+    <main class="main-content">
+      <div class="container" ng-view>
 
-  <div>AngularJS seed app: v<span app-version></span></div>
+      </div> <!-- .container -->
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="widget">
+              <h3 class="widget-title">About Us</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia tempore vitae mollitia nesciunt saepe cupiditate</p>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="widget">
+              <h3 class="widget-title">Recent Review</h3>
+              <ul class="no-bullet">
+                <li><a href="#">Lorem ipsum dolor</a></li>
+                <li><a href="#">Sit amet consecture</a></li>
+                <li><a href="#">Dolorem respequem</a></li>
+                <li><a href="#">Invenore veritae</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="widget">
+              <h3 class="widget-title">Help Center</h3>
+              <ul class="no-bullet">
+                <li><a href="#">Lorem ipsum dolor</a></li>
+                <li><a href="#">Sit amet consecture</a></li>
+                <li><a href="#">Dolorem respequem</a></li>
+                <li><a href="#">Invenore veritae</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="widget">
+              <h3 class="widget-title">Join Us</h3>
+              <ul class="no-bullet">
+                <li><a href="#">Lorem ipsum dolor</a></li>
+                <li><a href="#">Sit amet consecture</a></li>
+                <li><a href="#">Dolorem respequem</a></li>
+                <li><a href="#">Invenore veritae</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="widget">
+              <h3 class="widget-title">Social Media</h3>
+              <ul class="no-bullet">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Google+</a></li>
+                <li><a href="#">Pinterest</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="widget">
+              <h3 class="widget-title">Newsletter</h3>
+              <form action="#" class="subscribe-form">
+                <input type="text" placeholder="Email Address">
+              </form>
+            </div>
+          </div>
+        </div> <!-- .row -->
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
+        <div class="colophon">Copyright 2014 Company name, Designed by Themezy. All rights reserved</div>
+      </div> <!-- .container -->
+
+    </footer>
+  </div>
+  <!-- Default snippet for navigation -->
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
@@ -39,5 +123,9 @@
   <script src="core/version/version.js"></script>
   <script src="core/version/version-directive.js"></script>
   <script src="core/version/interpolate-filter.js"></script>
+   <!-- paginador -->
+ <script type="text/javascript" src="lib/angular-pagination.js"></script>
+  <!-- Animate -->
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
 </body>
 </html>

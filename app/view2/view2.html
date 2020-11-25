@@ -1,5 +1,122 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<div class="main-navigation" >
+   <!-- formulario para seleccion de visualizacion -->
+  <form action="#" class="search-form">
+    <li class="menu-item"><input type="checkbox" ng-model="cb_pelis"   ng-init="cb_pelis = true">Peliculas</li>
+    <li class="menu-item"><input type="checkbox" ng-model="cb_series"  ng-init="cb_series = true">Series</li>
+    <li class="menu-item"><input type="checkbox" ng-model="cb_personajes" ng-init="cb_personajes = true">Personajes</li>
+    <input type="text" placeholder="Search..." ng-model="filtro" ng-keyup="eventKeyUp()">
+  </form>
+</div> 
+
+<h2 class="textFiltro">{{filtro}}</h2>
+<div class="page" >
+   <!-- Session de Peliculas -->
+  <div ng-show="visualizar">
+    <input type="text" ng-pagination-search="peliculas"  ng-show="cb_pelis"  placeholder="Peliculas"/>
+  </div>
+  
+  <div class="row" ng-show="cb_pelis">    
+    <div class="col-sm-6 col-md-3" ng-pagination="pelicula in peliculas" ng-pagination-size="4" >
+      <div class="subtitle"><h3 class="hSubtitle">{{pelicula.title}}</h3></div>
+      <div class="latest-movie">
+        <a href="#"><img src="{{image + pelicula.poster_path}}"  style="height:300px"></a>
+      </div>
+       <button class="col-sm-6 col-md-12" type="button" class="btn btn-primary" 
+       data-toggle="modal" data-target="#myModal" ng-click="descripcionModal(pelicula.id,'P')">
+        Ver Informacion
+      </button>
+    </div>    
+    
+    <div class="col-sm-6 col-md-12 align-self-center text-center"   ng-if="visualizar" ng-show="cb_pelis">
+      <br/>
+       <ng-pagination-control  pagination-id="peliculas" color="white" height="35px"></ng-pagination-control>
+    </div>
+   </div> 
+   <hr/>
+   <br/>
+    <!-- Session de Series -->
+   <div ng-show="visualizar2">
+      <input type="text" ng-pagination-search="series" ng-show="cb_series"  placeholder="series"/>
+   </div>
+   <div class="row" ng-show="cb_series" >    
+    <div class="col-sm-6 col-md-3" ng-pagination="serie in series" ng-pagination-size="4" >
+      <div class="subtitle"><h3 class="hSubtitle">{{serie.original_name}}</h3></div>
+      <div class="latest-movie">
+        <a href="#"><img src="{{image + serie.poster_path}}"  style="height:300px"></a>
+      </div>
+       <button class="col-sm-6 col-md-12" type="button" class="btn btn-primary" 
+       data-toggle="modal" data-target="#myModal" ng-click="descripcionModal(serie.id,'S')">
+        Ver Informacion
+      </button>
+    </div>    
+    <div class="col-sm-6 col-md-12 align-self-center text-center"   ng-if="visualizar" ng-show="cb_series">
+       <br/>
+       <ng-pagination-control  pagination-id="series" color="white" height="35px"></ng-pagination-control>
+    </div>
+   </div> <!-- .row -->
+   <hr/>
+   <br/>
+ <!-- Session de Personajes -->
+   <div ng-show="visualizar3">
+    <input type="text" ng-pagination-search="personajes" ng-show="cb_personajes" placeholder="Personajes"/>
+   </div>
+   <div class="row" ng-show="cb_personajes" >    
+    <div class="col-sm-6 col-md-3" ng-pagination="personaje in personajes" ng-pagination-size="4" >
+      <div class="subtitle"><h3 class="hSubtitle">{{personaje.name}}</h3></div>
+      <div class="latest-movie">
+        <a href="#"><img src="{{image + personaje.profile_path}}"  style="height:300px"></a>
+      </div>
+       <button class="col-sm-6 col-md-12 " type="button" class="btn btn-primary" 
+       data-toggle="modal" data-target="#myModal" ng-click="descripcionModal(personaje.id,'O')">
+        Ver Informacion
+      </button>
+    </div>    
+    <div class="col-sm-6 col-md-12 align-self-center text-center"   ng-if="visualizar" ng-show="cb_series">
+       <br/>
+       <ng-pagination-control  pagination-id="personajes" color="white" height="35px"></ng-pagination-control>
+    </div>
+   </div>	
+</div>
+
+  <!-- Comienzo del modal detalle de seleccion-->
+  <div class="modal" id="myModal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Cabecera del modal -->
+        <div class="modal-header">
+          <h4 class="modal-title" ng-if="!||ViewPer">{{descripcion.title}}</h4>
+         <h4 class="modal-title" ng-if="ViewPer">{{descripcion.name}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Cuerpo del modal  -->
+        <div class="modal-body" ng-if="!ViewPer">
+          <div class="card" style="width:100%">
+            <img class="card-img-top" src="{{image + descripcion.poster_path}}" alt="Card image" >
+            <div class="card-body">
+              <h4 class="card-title">Descripcion:</h4>
+              <p class="card-text">
+                {{descripcion.overview}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body" ng-if="ViewPer">
+          <div class="card" style="width:100%">
+            <img class="card-img-top" src="{{image + descripcion.profile_path}}" alt="Card image" >
+            <div class="card-body">
+              <h4 class="card-title">Biografia:</h4>
+              <p class="card-text">
+                {{descripcion.biography}}</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- pie de modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
